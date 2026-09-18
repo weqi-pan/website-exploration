@@ -94,6 +94,10 @@ async def client(reader, writer):
 
 async def main():
     p = argparse.ArgumentParser(); p.add_argument("--host", default="127.0.0.1"); p.add_argument("--port", type=int, default=38761); a = p.parse_args()
+    if a.host not in {"127.0.0.1", "localhost", "::1"}:
+        # The RPC endpoint has no authentication and can drive the browser; it must
+        # never be reachable from other machines.
+        raise SystemExit(f"runtime 仅允许绑定本机回环地址，拒绝 --host {a.host}")
     server = await asyncio.start_server(client, a.host, a.port); print(json.dumps({"ok": True, "port": a.port}), flush=True)
     async with server: await server.serve_forever()
 if __name__ == "__main__": asyncio.run(main())
