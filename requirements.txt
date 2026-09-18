@@ -1,0 +1,3 @@
+# Single source of truth for dependencies; bootstrap.py installs this file.
+# Playwright is pinned because selector behaviour is validated against this version.
+-r scripts/requirements.txt

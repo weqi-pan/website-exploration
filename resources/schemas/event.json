@@ -1,0 +1,1 @@
+{"type":"object","required":["time","action"],"properties":{"time":{"type":"string"},"action":{"type":"string"}}}

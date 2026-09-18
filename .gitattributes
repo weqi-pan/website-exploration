@@ -1,0 +1,2 @@
+# Normalize line endings so Windows and Unix checkouts produce identical files.
+* text=auto eol=lf

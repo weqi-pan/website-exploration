@@ -1,0 +1,42 @@
+{
+  "name": "website-exploration",
+  "display_name": "授权网站探索与证据报告技能",
+  "version": "1.1.0",
+  "language": "zh-CN",
+  "license": "MIT",
+  "entrypoint": "scripts/tool.py",
+  "runtime": "runtime/server.py",
+  "description": "用 Playwright 探索用户明确授权的同域网站，生成页面证据、截图与中文探索报告；危险操作拦截、凭据脱敏、验证码即停。",
+  "capabilities": [
+    "session-based browser exploration with explicit scope control (current/section/subtree/site)",
+    "navigation map and element observation with stable element ids",
+    "optional configured login with captcha/MFA stop and account masking",
+    "dangerous action interception (payment, deletion, account closure, publishing)",
+    "credential redaction in evidence and reports (URL params, Authorization/Bearer, key=value)",
+    "Markdown report, JSON pages/events evidence, screenshots, optional DOCX function list",
+    "skill-local virtualenv and Playwright Chromium via bootstrap.py; runtime binds to 127.0.0.1 only"
+  ],
+  "outputs": ["report.md", "pages.json", "events.json", "screenshots", "function-list.docx (optional)"],
+  "dependencies": {
+    "required": ["python>=3.10", "playwright==1.61.0"],
+    "optional": ["python-docx>=1.0 (skips DOCX export when absent)"],
+    "office": false,
+    "network": "outbound to the authorized target site only; runtime listens on 127.0.0.1"
+  },
+  "install": {
+    "cli": "npx skills add weqi-pan/website-exploration",
+    "repository": "https://github.com/weqi-pan/website-exploration",
+    "directory": "https://skills.sh/weqi-pan/website-exploration/website-exploration",
+    "bootstrap": "python scripts/bootstrap.py"
+  },
+  "layout": {
+    "instructions": "SKILL.md",
+    "examples": "examples/",
+    "scripts": "scripts/",
+    "runtime": "runtime/",
+    "resources": "resources/",
+    "tests": "tests/",
+    "changelog": "CHANGELOG.md",
+    "license": "LICENSE"
+  }
+}
